@@ -1,11 +1,14 @@
 package ie.kf.activities;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
@@ -13,17 +16,26 @@ import ie.kf.R;
 
 public class Add extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private String filePath, species, sex, age;
+    private String species, sex, age;
+    private Bitmap bitmap;
+    private ImageView birdPic;
     private EditText speciesET;
     private Spinner spinner;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add);
 
+        birdPic = findViewById(R.id.addBirdPicView);
         speciesET = findViewById(R.id.addSpeciesET);
         spinner = findViewById(R.id.addSexSpinner);
+
+        intent = getIntent();
+        bitmap = intent.getParcelableExtra("imageBitmap");
+
+        birdPic.setImageBitmap(bitmap);
 
         spinner.setOnItemSelectedListener(this);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,

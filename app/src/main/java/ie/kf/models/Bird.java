@@ -1,16 +1,19 @@
 package ie.kf.models;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 
 public class Bird implements Serializable {
 
-    String filePath, species, sex, age;
+    String species, sex, age;
+    Bitmap bitmap;
 
     public Bird() {}
 
-    public Bird(String filePath, String species, String sex, String age) {
+    public Bird(Bitmap bitmap, String species, String sex, String age) {
 
-        this.filePath = filePath;
+        this.bitmap = bitmap;
         this.species = species;
         this.sex = sex;
         this.age = age;
@@ -18,7 +21,7 @@ public class Bird implements Serializable {
 
     @Override
     public String toString() {
-        return filePath + ", " + species + ", " + sex + ", " + age;
+        return bitmap + ", " + species + ", " + sex + ", " + age;
     }
 
 }

@@ -97,6 +97,9 @@ public class Home extends AppCompatActivity {
             galleryAddPic();
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
+            Intent intent = new Intent(getApplicationContext(), Add.class);
+            intent.putExtra("imageBitmap", imageBitmap);
+            startActivity(intent);
         }
     }
 
