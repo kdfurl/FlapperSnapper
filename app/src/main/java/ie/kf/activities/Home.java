@@ -1,4 +1,4 @@
-package ie.kf;
+package ie.kf.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,13 +13,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.io.IOException;
+
+import ie.kf.R;
 
 
 public class Home extends AppCompatActivity {
