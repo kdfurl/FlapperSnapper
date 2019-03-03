@@ -84,7 +84,8 @@
             android:layout_weight="1"
             android:text="@string/ageAdultRB"
             android:textColor="@color/colorFontBlack"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:onClick="onRadioButtonClicked" />
 
         <RadioButton
             android:id="@+id/addAgeJuvenileRB"
@@ -93,7 +94,8 @@
             android:layout_weight="1"
             android:text="@string/ageJuvenileRB"
             android:textColor="@color/colorFontBlack"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:onClick="onRadioButtonClicked" />
 
     </RadioGroup>
 
