@@ -11,6 +11,9 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -19,9 +22,14 @@ import java.util.Date;
 import java.io.IOException;
 
 import ie.kf.R;
+import ie.kf.models.Bird;
 
 
 public class Home extends Base {
+
+    TextView emptyList;
+    ListView birdListView;
+    ArrayAdapter<Bird> birdAdapter;
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_PHOTO = 1;
@@ -33,6 +41,12 @@ public class Home extends Base {
         setContentView(R.layout.home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        emptyList = findViewById(R.id.emptyListTV);
+        birdListView = findViewById(R.id.birdList);
+        birdListView.setEmptyView(emptyList);
+        birdAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, app.birdlist);
+        birdListView.setAdapter(birdAdapter);
 
         FloatingActionButton fab = findViewById(R.id.addPicFab);
         fab.setOnClickListener(new View.OnClickListener() {
