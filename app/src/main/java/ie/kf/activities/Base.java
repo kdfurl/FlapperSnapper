@@ -29,4 +29,9 @@ public class Base extends AppCompatActivity {
         startActivity(new Intent(this, Home.class));
     }
 
+    public void menuClear(MenuItem m) {
+        app.dbManager.reset();
+        startActivity(new Intent(this, Home.class));
+    }
+
 }
