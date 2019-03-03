@@ -8,7 +8,7 @@ import java.util.UUID;
 public class Bird implements Serializable {
 
     public String birdId, species, sex, age;
-    Bitmap bitmap;
+    public Bitmap bitmap;
 
     public Bird() {}
 
