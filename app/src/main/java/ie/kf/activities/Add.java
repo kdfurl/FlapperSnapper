@@ -3,6 +3,7 @@ package ie.kf.activities;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,12 +11,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import ie.kf.R;
+import ie.kf.models.Bird;
 
 public class Add extends Base implements AdapterView.OnItemSelectedListener {
 
-    private String species, sex, age;
+    private String species, sex, age = "";
     private Bitmap bitmap;
     private ImageView birdPic;
     private EditText speciesET;
@@ -63,6 +66,19 @@ public class Add extends Base implements AdapterView.OnItemSelectedListener {
                 if (checked)
                     age = "Juvenile";
                     break;
+        }
+    }
+
+    public void addBird(View v) {
+        species = speciesET.getText().toString();
+
+        if ((species.length() > 0) && (age.length() > 0) && (sex.length() > 0)) {
+            Bird b = new Bird(bitmap, species, sex, age);
+            Log.v("flappersnapper", "Add: " + b);
+            app.birdlist.add(b);
+            startActivity(new Intent(this, Home.class));
+        } else {
+            Toast.makeText(this, "You must enter something for Species, Sex and Age", Toast.LENGTH_SHORT).show();
         }
     }
 

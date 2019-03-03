@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.FileProvider;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -100,6 +101,12 @@ public class Home extends Base {
         Uri contentUri = Uri.fromFile(f);
         mediaScanIntent.setData(contentUri);
         this.sendBroadcast(mediaScanIntent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.v("flappersnapper", "Home: " + app.birdlist);
     }
 
 }

@@ -3,16 +3,18 @@ package ie.kf.models;
 import android.graphics.Bitmap;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 public class Bird implements Serializable {
 
-    String species, sex, age;
+    public String birdId, species, sex, age;
     Bitmap bitmap;
 
     public Bird() {}
 
     public Bird(Bitmap bitmap, String species, String sex, String age) {
 
+        this.birdId = UUID.randomUUID().toString();
         this.bitmap = bitmap;
         this.species = species;
         this.sex = sex;
@@ -21,7 +23,7 @@ public class Bird implements Serializable {
 
     @Override
     public String toString() {
-        return bitmap + ", " + species + ", " + sex + ", " + age;
+        return bitmap + ", " + birdId + ", " + species + ", " + sex + ", " + age;
     }
 
 }

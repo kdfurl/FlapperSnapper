@@ -136,6 +136,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:onClick="addBird"
         android:text="@string/saveBtn"
         android:textColor="@color/colorFontBlack"
         app:layout_constraintBottom_toBottomOf="parent"
