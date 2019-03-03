@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">FlapperSnapper</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_home">Home</string>
     <string name="speciesTV">Species:</string>
     <string name="speciesHint">Enter Bird Species</string>
     <string name="sexTV">Sex:</string>

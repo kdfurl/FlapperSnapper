@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="ie.kf.activities.Home">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:onClick="menuHome"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:title="@string/action_home"
+        app:showAsAction="ifRoom" />
 </menu>

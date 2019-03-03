@@ -2,7 +2,6 @@ package ie.kf.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,7 +13,7 @@ import android.widget.Spinner;
 
 import ie.kf.R;
 
-public class Add extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class Add extends Base implements AdapterView.OnItemSelectedListener {
 
     private String species, sex, age;
     private Bitmap bitmap;
@@ -55,7 +54,6 @@ public class Add extends AppCompatActivity implements AdapterView.OnItemSelected
     public void onRadioButtonClicked(View view) {
 
         boolean checked = ((RadioButton) view).isChecked();
-
         switch(view.getId()) {
             case R.id.addAgeAdultRB:
                 if (checked)
