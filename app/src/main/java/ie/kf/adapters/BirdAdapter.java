@@ -50,6 +50,11 @@ public class BirdAdapter extends ArrayAdapter<Bird> {
     }
 
     @Override
+    public Bird getItem(int position) {
+        return birdList.get(position);
+    }
+
+    @Override
     public int getCount()
     {
         return birdList.size();

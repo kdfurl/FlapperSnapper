@@ -11,6 +11,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +51,20 @@ public class Home extends Base {
         birdListView.setEmptyView(emptyList);
         birdAdapter = new BirdAdapter(this, birdList);
         birdListView.setAdapter(birdAdapter);
+
+        birdListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                Bird b = birdAdapter.getItem(position);
+                String birdId = b.birdId;
+                Log.v("flappersnapper", "Home: " + birdId);
+
+                Intent i = new Intent(getApplicationContext(), Edit.class);
+                i.putExtra("birdId", birdId);
+                startActivity(i);
+            }
+        });
 
         FloatingActionButton fab = findViewById(R.id.addPicFab);
         fab.setOnClickListener(new View.OnClickListener() {
