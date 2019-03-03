@@ -1,6 +1,8 @@
 package ie.kf.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,14 +31,17 @@ public class BirdAdapter extends ArrayAdapter<Bird> {
     {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view       = inflater.inflate(R.layout.bird_row, parent, false);
-        Bird bird   = birdList.get(position);
+        View view = inflater.inflate(R.layout.bird_row, parent, false);
+        Bird bird = birdList.get(position);
         ImageView imgView = view.findViewById(R.id.rowImgView);
         TextView speciesTV = view.findViewById(R.id.rowSpeciesTV);
         TextView sexTV = view.findViewById(R.id.rowSexTV);
         TextView ageTV = view.findViewById(R.id.rowAgeTV);
 
-        imgView.setImageBitmap(bird.bitmap);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bird.byteArray, 0, bird.byteArray.length);
+
+        imgView.setImageBitmap(bitmap);
+
         speciesTV.setText(bird.species);
         sexTV.setText(bird.sex);
         ageTV.setText(bird.age);

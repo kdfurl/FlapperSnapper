@@ -19,9 +19,11 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.io.IOException;
+import java.util.List;
 
 import ie.kf.R;
 import ie.kf.adapters.BirdAdapter;
+import ie.kf.models.Bird;
 
 
 public class Home extends Base {
@@ -29,6 +31,7 @@ public class Home extends Base {
     TextView emptyList;
     ListView birdListView;
     BirdAdapter birdAdapter;
+    List<Bird> birdList;
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_PHOTO = 1;
@@ -41,10 +44,11 @@ public class Home extends Base {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        birdList = app.dbManager.getAll();
         emptyList = findViewById(R.id.emptyListTV);
         birdListView = findViewById(R.id.birdList);
         birdListView.setEmptyView(emptyList);
-        birdAdapter = new BirdAdapter(this, app.birdlist);
+        birdAdapter = new BirdAdapter(this, birdList);
         birdListView.setAdapter(birdAdapter);
 
         FloatingActionButton fab = findViewById(R.id.addPicFab);
@@ -119,7 +123,7 @@ public class Home extends Base {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.v("flappersnapper", "Home: " + app.birdlist);
+        Log.v("flappersnapper", "Home: " + birdList);
     }
 
 }

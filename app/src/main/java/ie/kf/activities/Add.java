@@ -13,6 +13,8 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+
 import ie.kf.R;
 import ie.kf.models.Bird;
 
@@ -70,12 +72,17 @@ public class Add extends Base implements AdapterView.OnItemSelectedListener {
     }
 
     public void addBird(View v) {
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+
         species = speciesET.getText().toString();
 
         if ((species.length() > 0) && (age.length() > 0) && (sex.length() > 0)) {
-            Bird b = new Bird(bitmap, species, sex, age);
+            Bird b = new Bird(byteArray, species, sex, age);
             Log.v("flappersnapper", "Add: " + b);
-            app.birdlist.add(b);
+            app.dbManager.add(b);
             startActivity(new Intent(this, Home.class));
         } else {
             Toast.makeText(this, "You must enter something for Species, Sex and Age", Toast.LENGTH_SHORT).show();

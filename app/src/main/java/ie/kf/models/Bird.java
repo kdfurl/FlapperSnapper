@@ -1,21 +1,20 @@
 package ie.kf.models;
 
-import android.graphics.Bitmap;
-
-import java.io.Serializable;
 import java.util.UUID;
 
-public class Bird implements Serializable {
+import io.realm.RealmObject;
+
+public class Bird extends RealmObject {
 
     public String birdId, species, sex, age;
-    public Bitmap bitmap;
+    public byte[] byteArray;
 
     public Bird() {}
 
-    public Bird(Bitmap bitmap, String species, String sex, String age) {
+    public Bird(byte[] byteArray, String species, String sex, String age) {
 
         this.birdId = UUID.randomUUID().toString();
-        this.bitmap = bitmap;
+        this.byteArray = byteArray;
         this.species = species;
         this.sex = sex;
         this.age = age;
@@ -23,7 +22,7 @@ public class Bird implements Serializable {
 
     @Override
     public String toString() {
-        return bitmap + ", " + birdId + ", " + species + ", " + sex + ", " + age;
+        return byteArray + ", " + birdId + ", " + species + ", " + sex + ", " + age;
     }
 
 }
