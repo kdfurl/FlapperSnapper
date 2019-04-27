@@ -22,7 +22,7 @@ import ie.kf.models.Bird;
 
 public class Edit extends Base implements AdapterView.OnItemSelectedListener {
 
-    private String species, sex, age = "";
+    private String species, sex, age;
     private Bitmap bitmap;
     private ImageView birdPic;
     private EditText speciesET;
@@ -47,23 +47,27 @@ public class Edit extends Base implements AdapterView.OnItemSelectedListener {
 
         bird = app.dbManager.get(birdId);
 
-        Log.v(app.TAG, "Edit: " + bird.species);
+        species = bird.species;
+        sex = bird.sex;
+        age = bird.age;
+
+        Log.v(app.TAG, "Edit: " + bird);
 
         bitmap = BitmapFactory.decodeByteArray(bird.byteArray, 0, bird.byteArray.length);
         birdPic.setImageBitmap(bitmap);
 
-        speciesET.setText(bird.species);
+        speciesET.setText(species);
 
         spinner.setOnItemSelectedListener(this);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.sex_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setSelection(adapter.getPosition(bird.sex));
+        spinner.setSelection(adapter.getPosition(sex));
 
-        if (bird.age.equals("Adult")) {
+        if (age.equals("Adult")) {
             adultRB.setChecked(true);
-        } else if (bird.age.equals("Juvenile")) {
+        } else if (age.equals("Juvenile")) {
             juvenileRB.setChecked(true);
         }
     }
@@ -73,7 +77,6 @@ public class Edit extends Base implements AdapterView.OnItemSelectedListener {
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
-        sex = "";
     }
 
     public void onRadioButtonClicked(View view) {
