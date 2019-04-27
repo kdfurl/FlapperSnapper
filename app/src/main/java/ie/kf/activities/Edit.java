@@ -47,7 +47,7 @@ public class Edit extends Base implements AdapterView.OnItemSelectedListener {
 
         bird = app.dbManager.get(birdId);
 
-        Log.v("flappersnapper", "Edit: " + bird.species);
+        Log.v(app.TAG, "Edit: " + bird.species);
 
         bitmap = BitmapFactory.decodeByteArray(bird.byteArray, 0, bird.byteArray.length);
         birdPic.setImageBitmap(bitmap);
@@ -97,7 +97,7 @@ public class Edit extends Base implements AdapterView.OnItemSelectedListener {
 
         if ((species.length() > 0) && (age.length() > 0) && (sex.length() > 0)) {
             app.dbManager.update(bird, species, sex, age);
-            Log.v("flappersnapper", "Update: " + bird);
+            Log.v(app.TAG, "Update: " + bird);
             startActivity(new Intent(this, Home.class));
         } else {
             Toast.makeText(this, "You must enter something for Species, Sex and Age", Toast.LENGTH_SHORT).show();

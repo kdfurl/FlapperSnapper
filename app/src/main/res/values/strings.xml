@@ -9,6 +9,9 @@
     <string name="ageJuvenileRB">Juvenile</string>
     <string name="saveBtn">Save</string>
     <string name="emptyListLbl">You have not logged any sightings yet</string>
+    <string name="disconnect">Disconnect Account</string>
+    <string name="menu_clear_list">Clear List</string>
+    <string name="menu_log_out">Log Out</string>
 
     <string-array name="sex_array">
         <item>Male</item>

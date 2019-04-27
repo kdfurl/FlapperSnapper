@@ -81,7 +81,7 @@ public class Add extends Base implements AdapterView.OnItemSelectedListener {
 
         if ((species.length() > 0) && (age.length() > 0) && (sex.length() > 0)) {
             Bird b = new Bird(byteArray, species, sex, age);
-            Log.v("flappersnapper", "Add: " + b);
+            Log.v(app.TAG, "Add: " + b);
             app.dbManager.add(b);
             startActivity(new Intent(this, Home.class));
         } else {

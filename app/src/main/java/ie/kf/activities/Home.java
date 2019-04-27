@@ -58,7 +58,7 @@ public class Home extends Base {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 Bird b = birdAdapter.getItem(position);
                 String birdId = b.birdId;
-                Log.v("flappersnapper", "Home: " + birdId);
+                Log.v(app.TAG, "Home: " + birdId);
 
                 Intent i = new Intent(getApplicationContext(), Edit.class);
                 i.putExtra("birdId", birdId);
@@ -138,7 +138,7 @@ public class Home extends Base {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.v("flappersnapper", "Home: " + birdList);
+        Log.v(app.TAG, "Home: " + birdList);
     }
 
 }
