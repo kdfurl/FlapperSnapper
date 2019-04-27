@@ -39,7 +39,7 @@ public class Base extends AppCompatActivity {
     }
 
     public void menuClear(MenuItem m) {
-        app.dbManager.reset();
+        app.dbManager.reset(app.googleId);
         startActivity(new Intent(this, Home.class));
     }
 

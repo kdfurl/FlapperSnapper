@@ -55,8 +55,9 @@ public class DBManager {
         realmDatabase.commitTransaction();
     }
 
-    public RealmResults<Bird> getAll() {
+    public RealmResults<Bird> getAll(String userId) {
         RealmResults<Bird> result = realmDatabase.where(Bird.class)
+                .equalTo("userId", userId)
                 .findAll();
         return result;
     }
@@ -68,9 +69,10 @@ public class DBManager {
                 .first();
     }
 
-    public void reset() {
+    public void reset(String userId) {
         realmDatabase.beginTransaction();
         realmDatabase.where(Bird.class)
+                .equalTo("userId", userId)
                 .findAll()
                 .deleteAllFromRealm();
         realmDatabase.commitTransaction();

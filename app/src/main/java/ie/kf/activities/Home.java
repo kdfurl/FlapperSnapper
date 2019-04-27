@@ -45,7 +45,7 @@ public class Home extends Base {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        birdList = app.dbManager.getAll();
+        birdList = app.dbManager.getAll(app.googleId);
         emptyList = findViewById(R.id.emptyListTV);
         birdListView = findViewById(R.id.birdList);
         birdListView.setEmptyView(emptyList);

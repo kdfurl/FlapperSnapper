@@ -89,6 +89,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     }
 
     private void revokeAccess() {
+        app.dbManager.reset(app.googleId);
         Auth.GoogleSignInApi.revokeAccess(app.googleApiClient).setResultCallback(new ResultCallback<Status>() {
             @Override
             public void onResult(@NonNull Status status) {

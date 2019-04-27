@@ -6,13 +6,14 @@ import io.realm.RealmObject;
 
 public class Bird extends RealmObject {
 
-    public String birdId, species, sex, age;
+    public String userId, birdId, species, sex, age;
     public byte[] byteArray;
 
     public Bird() {}
 
-    public Bird(byte[] byteArray, String species, String sex, String age) {
+    public Bird(String userId, byte[] byteArray, String species, String sex, String age) {
 
+        this.userId = userId;
         this.birdId = UUID.randomUUID().toString();
         this.byteArray = byteArray;
         this.species = species;
@@ -22,7 +23,7 @@ public class Bird extends RealmObject {
 
     @Override
     public String toString() {
-        return byteArray + ", " + birdId + ", " + species + ", " + sex + ", " + age;
+        return /*byteArray + ", " + */birdId + ", " + species + ", " + sex + ", " + age;
     }
 
 }

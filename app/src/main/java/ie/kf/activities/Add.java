@@ -20,7 +20,7 @@ import ie.kf.models.Bird;
 
 public class Add extends Base implements AdapterView.OnItemSelectedListener {
 
-    private String species, sex, age = "";
+    private String userId, species, sex, age = "";
     private Bitmap bitmap;
     private ImageView birdPic;
     private EditText speciesET;
@@ -31,6 +31,8 @@ public class Add extends Base implements AdapterView.OnItemSelectedListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add);
+
+        userId = app.googleId;
 
         birdPic = findViewById(R.id.addBirdPicView);
         speciesET = findViewById(R.id.addSpeciesET);
@@ -80,7 +82,7 @@ public class Add extends Base implements AdapterView.OnItemSelectedListener {
         species = speciesET.getText().toString();
 
         if ((species.length() > 0) && (age.length() > 0) && (sex.length() > 0)) {
-            Bird b = new Bird(byteArray, species, sex, age);
+            Bird b = new Bird(userId, byteArray, species, sex, age);
             Log.v(app.TAG, "Add: " + b);
             app.dbManager.add(b);
             startActivity(new Intent(this, Home.class));
