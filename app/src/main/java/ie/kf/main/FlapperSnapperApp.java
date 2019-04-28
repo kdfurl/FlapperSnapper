@@ -2,6 +2,7 @@ package ie.kf.main;
 
 import android.app.Application;
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.net.Uri;
 import android.util.Log;
 
@@ -25,6 +26,7 @@ public class FlapperSnapperApp extends Application {
     public String email;
     public Uri photoURL;
     public Bitmap photo;
+    public Location mCurrentLocation;
 
 
     @Override
