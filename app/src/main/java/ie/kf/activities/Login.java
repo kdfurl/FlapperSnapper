@@ -19,6 +19,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationServices;
 
 import ie.kf.R;
 import ie.kf.main.FlapperSnapperApp;
@@ -50,6 +51,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         app.googleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, app.gso)
+                .addApi(LocationServices.API)
                 .build();
     }
 

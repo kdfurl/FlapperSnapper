@@ -108,7 +108,7 @@ public class Home extends Base implements NavigationView.OnNavigationItemSelecte
         } else if (id == R.id.nav_addBird) {
             dispatchTakePictureIntent();
         } else if (id == R.id.nav_map) {
-            // map view
+            startActivity(new Intent(this, Map.class));
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
