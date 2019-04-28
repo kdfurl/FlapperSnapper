@@ -27,8 +27,8 @@ public class BirdAdapter extends ArrayAdapter<Bird> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
-    {
+    public View getView(int position, View convertView, ViewGroup parent) {
+
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View view = inflater.inflate(R.layout.bird_row, parent, false);
@@ -55,8 +55,7 @@ public class BirdAdapter extends ArrayAdapter<Bird> {
     }
 
     @Override
-    public int getCount()
-    {
+    public int getCount() {
         return birdList.size();
     }
 

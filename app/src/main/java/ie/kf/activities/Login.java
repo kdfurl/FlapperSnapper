@@ -25,7 +25,7 @@ import ie.kf.main.FlapperSnapperApp;
 
 public class Login extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
-    public FlapperSnapperApp app;
+    public FlapperSnapperApp app = FlapperSnapperApp.getInstance();
     private static final int RC_SIGN_IN = 1;
 
     SignInButton signInButton;
@@ -36,7 +36,6 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        app = (FlapperSnapperApp) getApplication();
         signInButton = findViewById(R.id.sign_in_button);
         disconnectButton = findViewById(R.id.disconnect_button);
         signInButton.setSize(SignInButton.SIZE_WIDE);

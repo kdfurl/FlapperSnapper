@@ -12,6 +12,8 @@ import ie.kf.db.DBManager;
 
 public class FlapperSnapperApp extends Application {
 
+    private static FlapperSnapperApp instance;
+
     public String TAG = "FlapperSnapper";
     public DBManager dbManager;
     public GoogleApiClient googleApiClient;
@@ -26,18 +28,21 @@ public class FlapperSnapperApp extends Application {
 
 
     @Override
-    public void onCreate()
-    {
+    public void onCreate() {
         super.onCreate();
         Log.v(TAG, "FlapperSnapper App Started");
+        instance = this;
         dbManager = new DBManager(this);
         dbManager.open();
         Log.v(TAG, "Realm Database Created & Opened");
     }
 
+    public static synchronized FlapperSnapperApp getInstance() {
+        return instance;
+    }
+
     @Override
-    public void onTerminate()
-    {
+    public void onTerminate() {
         super.onTerminate();
         dbManager.close();
     }

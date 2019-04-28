@@ -20,12 +20,11 @@ import ie.kf.main.FlapperSnapperApp;
 
 public class Base extends AppCompatActivity {
 
-    public FlapperSnapperApp app;
+    public FlapperSnapperApp app = FlapperSnapperApp.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        app = (FlapperSnapperApp) getApplication();
     }
 
     @Override
