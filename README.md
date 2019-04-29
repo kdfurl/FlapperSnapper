@@ -22,7 +22,7 @@ The data is stored in a Realm database on the device.<br><br>
   <li><b>Minor Bug Fixes and Code Improvements</b></li>
   </ul>
   
-  <br><h4>Link to YouTube demo:</h4> <br>
+  <br><h4>Link to YouTube demo:</h4> https://youtu.be/3_eVzywYI2g<br>
   
   #### References
   <ul>
