@@ -9,13 +9,9 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -30,6 +26,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
@@ -85,6 +82,7 @@ public class MapsFragment extends SupportMapFragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         try {
             mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
             createLocationCallback();
@@ -138,6 +136,9 @@ public class MapsFragment extends SupportMapFragment implements
         mMap.setTrafficEnabled(true);
         mMap.setBuildingsEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
+
+        birdList = app.dbManager.getAll(app.googleId);
+        addBirds(birdList);
     }
 
     //http://www.journaldev.com/10409/android-handling-runtime-permissions-example
@@ -274,6 +275,15 @@ public class MapsFragment extends SupportMapFragment implements
         }
         catch(SecurityException se) {
             Toast.makeText(getActivity(),"Check Your Permissions on Location Updates",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void addBirds(List<Bird> list) {
+        for (Bird b : list) {
+            mMap.addMarker(new MarkerOptions()
+            .position(new LatLng(b.latitude, b.longitude))
+            .title(b.age + " " + b.sex + " " + b.species)
+            .snippet(b.address));
         }
     }
 

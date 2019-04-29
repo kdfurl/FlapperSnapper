@@ -2,6 +2,9 @@ package ie.kf.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +17,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Locale;
 
 import ie.kf.R;
 import ie.kf.models.Bird;
@@ -55,7 +60,6 @@ public class Add extends Base implements AdapterView.OnItemSelectedListener {
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
-        sex = "";
     }
 
     public void onRadioButtonClicked(View view) {
@@ -82,13 +86,33 @@ public class Add extends Base implements AdapterView.OnItemSelectedListener {
         species = speciesET.getText().toString();
 
         if ((species.length() > 0) && (age.length() > 0) && (sex.length() > 0)) {
-            Bird b = new Bird(userId, byteArray, species, sex, age);
+            Bird b = new Bird(userId, byteArray, species, sex, age, getAddressFromLocation(app.mCurrentLocation),
+                    app.mCurrentLocation.getLatitude(),app.mCurrentLocation.getLongitude());
             Log.v(app.TAG, "Add: " + b);
             app.dbManager.add(b);
             startActivity(new Intent(this, Home.class));
         } else {
             Toast.makeText(this, "You must enter something for Species, Sex and Age", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private String getAddressFromLocation( Location location ) {
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+
+        String strAddress = "";
+        Address address;
+        try {
+            address = geocoder
+                    .getFromLocation( location.getLatitude(), location.getLongitude(), 1 )
+                    .get( 0 );
+            strAddress = address.getAddressLine(0) +
+                    " " + address.getAddressLine(1) +
+                    " " + address.getAddressLine(2);
+        }
+        catch (IOException e ) {
+        }
+
+        return strAddress;
     }
 
 }
