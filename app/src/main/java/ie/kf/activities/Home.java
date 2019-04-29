@@ -17,9 +17,13 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -39,6 +43,8 @@ public class Home extends Base implements NavigationView.OnNavigationItemSelecte
     BirdAdapter birdAdapter;
     List<Bird> birdList;
 
+    private ImageView googlePhoto;
+
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_PHOTO = 1;
     String currentPhotoPath;
@@ -57,6 +63,20 @@ public class Home extends Base implements NavigationView.OnNavigationItemSelecte
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        //SetUp GooglePhoto and Email for Drawer here
+        googlePhoto = navigationView.getHeaderView(0).findViewById(R.id.nav_profile_pic_IV);
+        Glide.with(getApplicationContext()).load(app.photoURL)
+                .thumbnail(0.5f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(googlePhoto);
+
+        TextView googleName = navigationView.getHeaderView(0).findViewById(R.id.nav_name_TV);
+        googleName.setText(app.displayName);
+
+        TextView googleMail = navigationView.getHeaderView(0).findViewById(R.id.nav_email_TV);
+        googleMail.setText(app.email);
 
         birdList = app.dbManager.getAll(app.googleId);
         emptyList = findViewById(R.id.emptyListTV);
